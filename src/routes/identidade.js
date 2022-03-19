@@ -10,6 +10,11 @@ router.post("/", (req, res, next) => {
     "SELECT user_id, registration FROM vrp_user_identities WHERE user_id = ? AND registration = ?",
     [iduser, rg],
     (error, result, fields) => {
+      if (error) {
+        res.status(404).send({
+          mensagem: "campos_invalidos",
+        });
+      }
       let tamanho = result.length;
 
       if (tamanho === 1) {
