@@ -19,8 +19,9 @@ USE `redbank_c`;
 
 -- Copiando estrutura para tabela redbank_c.config
 CREATE TABLE IF NOT EXISTS `config` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL DEFAULT '1',
   `token` varchar(50) DEFAULT NULL,
+  `ip_server` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
