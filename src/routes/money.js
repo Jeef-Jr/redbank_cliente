@@ -84,6 +84,36 @@ router.patch("/", assinture, (req, res, next) => {
             });
           }
         );
+      } else if (operacao === 4) {
+        const new_saldo = parseInt(bank + valor);
+
+        mysql.query(
+          "UPDATE vrp_user_moneys SET bank = ? WHERE user_id = ?",
+          [new_saldo, req.userId],
+          (error, result, fields) => {
+            res.status(200).send({
+              mensagem: "success",
+            });
+          }
+        );
+      } else if (operacao === 5) {
+        if (valor <= bank) {
+          const new_saldo = parseInt(bank - valor);
+
+          mysql.query(
+            "UPDATE vrp_user_moneys SET bank = ? WHERE user_id = ?",
+            [new_saldo, req.userId],
+            (error, result, fields) => {
+              res.status(200).send({
+                mensagem: "success",
+              });
+            }
+          );
+        } else {
+          res.json({
+            mensagem: "valor_insuficiente",
+          });
+        }
       }
     }
   );
